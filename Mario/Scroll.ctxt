@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Scroll
+comment0.text=\r\n\ Scrolls\ the\ screen.\r\n\ \r\n\ @author\ Matthew\ Benson,\ Daniel\ Olinyk\r\n\ @version\ 1.0\r\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Scroll\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment2.params=
+comment2.target=void\ ActivateScroll()
+comment2.text=\r\n\ Sets\ location\ of\ two\ identical\ images\ to\ be\ linked\ together.\r\n\ Both\ images\ move\ simultaneously.\r\n
+numComments=3
