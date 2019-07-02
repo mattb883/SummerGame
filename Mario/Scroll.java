@@ -21,10 +21,17 @@ public class Scroll extends Actor
      * Sets location of two identical images to be linked together.
      * Both images move simultaneously.
      */
-    public void ActivateScroll() {
+    public void ActivateForwardScroll() {
         if (getX() < -getImage().getWidth()/2) {
             setLocation(getWorld().getWidth() + 595, getY());
         }
         setLocation(getX() - 5, getY());
+    }
+    
+    public void ActivateBackwardScroll() {
+        if (getX() > getImage().getWidth() + getImage().getWidth()/2) {
+            setLocation(-595, getY());
+        }
+        setLocation(getX() + 5, getY());
     }
 }

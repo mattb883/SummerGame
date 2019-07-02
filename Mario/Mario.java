@@ -8,12 +8,48 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Mario extends Actor
 {
+    int acceleration = 2;
+    int vSpeed = 0;
+    int jumpAbility = 12;
     /**
      * Act - do whatever the Mario wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-        // Add your action code here.
+       if(Greenfoot.isKeyDown("space") && onGround())
+       {
+          jump(); 
+       }
+       checkFall();
     }    
+    
+    public boolean onGround()
+    {
+        Actor under = getOneObjectAtOffset(0, getImage().getHeight()/2 + 2, GameGround.class);
+        return under != null;
+    }
+    
+    public void Fall()
+    {
+        setLocation (getX(), getY() + vSpeed);
+        vSpeed = vSpeed += acceleration;
+    }
+    
+    public void checkFall()
+    {
+        if (onGround())
+        {
+            vSpeed = 0;
+        }
+        else {
+            Fall();
+        }
+    }
+    
+    public void jump()
+    {
+       vSpeed = -jumpAbility;
+       Fall();
+    }
 }
