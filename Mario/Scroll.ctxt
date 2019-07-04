@@ -9,4 +9,5 @@ comment2.target=void\ ActivateForwardScroll()
 comment2.text=\r\n\ Sets\ location\ of\ two\ identical\ images\ to\ be\ linked\ together.\r\n\ Both\ images\ move\ simultaneously.\r\n
 comment3.params=
 comment3.target=void\ ActivateBackwardScroll()
+comment3.text=\r\n\ Sets\ location\ of\ two\ identical\ images\ to\ be\ linked\ together.\r\n\ Both\ images\ move\ simultaneously.\r\n
 numComments=4

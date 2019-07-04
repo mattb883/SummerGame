@@ -28,6 +28,10 @@ public class Scroll extends Actor
         setLocation(getX() - 5, getY());
     }
     
+    /**
+     * Sets location of two identical images to be linked together.
+     * Both images move simultaneously.
+     */
     public void ActivateBackwardScroll() {
         if (getX() > getImage().getWidth() + getImage().getWidth()/2) {
             setLocation(-595, getY());
