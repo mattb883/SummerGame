@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Pipe
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Pipe\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\r\n\ Greenfoot\ cycles\ through\ the\ act\ method\ at\ a\ speed\ of\ approximately\ 60\ frames\ per\ second.\r\n\ Custom\ methods\ and\ code\ that\ need\ to\ be\ constantly\ checked\ should\ be\ placed\ here.\r\n
+numComments=2

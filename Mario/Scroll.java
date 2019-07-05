@@ -9,12 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Scroll extends Actor
 {
     /**
-     * Act - do whatever the Scroll wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Greenfoot cycles through the act method at a speed of approximately 60 frames per second.
+     * Custom methods and code that need to be constantly checked should be placed here.
      */
     public void act() 
     {
-        // Add your action code here.
+        //none
     }    
     
     /**

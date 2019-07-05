@@ -11,36 +11,46 @@ public class Mario extends Actor
     static final int gravity = 2;                   //force of gravity
     static final int jumpAbility = 30;              //the jumping ability of Mario (high he can reach)
     int ySpeed = 0;                                 //the vertical speed of Mario
+    boolean onPlatform;                               //checks if Mario is standing on the ground on a platform
     /**
-     * Act - do whatever the Mario wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Greenfoot cycles through the act method at a speed of approximately 60 frames per second.
+     * Custom methods and code that need to be constantly checked should be placed here.
      */
     public void act() 
     {
-        moveVertically();
-    }    
-    
-    private void moveVertically() {
+        moveVertically();       //call custom method
+    } 
+
+    /**
+     * Responsible for the vertical movement of Mario,
+     * Involving jumping, falling, and platform detection
+     */
+    public void moveVertically() {
         int worldHeight = getWorld().getHeight();
         int marioHeight = getImage().getHeight();
-        boolean onGround = false;
-        
-        ySpeed += gravity;
-        setLocation(getX(), getY() + ySpeed);
-        
+        boolean onPlatform = false;                         //originally, Mario is in the air
+
+        ySpeed += gravity;                                  //represents acceleration, updates vertical speed accordingly
+        setLocation(getX(), getY() + ySpeed);               //updates Mario's location based on vertical speed
+
+        //if Mario is on the ground
         if (getY() > 698) {
             setLocation(getX(), 698);
             ySpeed = 0;
-            onGround = true;
+            onPlatform = true;
         }
-        /*
-        int dy = (int)Math.signum(ySpeed);
-        while (getOneIntersectingObject(null) != null) {
-            setLocation(getX(), getY()-dy);
-            if (dy>0) onGround = true;
-            ySpeed = 0;
+
+        //if Mario is on a pipe
+        Actor a = getOneIntersectingObject(Pipe.class);
+        if (a != null) {
+            if (this.getY() + this.getImage().getHeight()/2 > a.getY() - a.getImage().getHeight()/2) {
+                setLocation(this.getX(), a.getY() - a.getImage().getHeight()/2 - this.getImage().getHeight()/2);
+                ySpeed = 0;
+                onPlatform = true;
+            }
         }
-        */
-        if (onGround && Greenfoot.isKeyDown("space")) ySpeed = -jumpAbility;
+
+        //if Mario is on top of a platform or the ground and the space bar is pressed, enable jumping
+        if (onPlatform && Greenfoot.isKeyDown("space")) ySpeed = -jumpAbility;
     }
 }
