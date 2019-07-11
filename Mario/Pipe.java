@@ -14,11 +14,6 @@ public class Pipe extends StationaryInteractiveObjects
      */
     public void act() 
     {
-        //moves pipe object at same velocity as background to create illusion of stationality
-        if (Greenfoot.isKeyDown("right")) {
-            move(-5);
-        } else if (Greenfoot.isKeyDown("left")) {
-            move(5);
-        }
+
     }    
 }

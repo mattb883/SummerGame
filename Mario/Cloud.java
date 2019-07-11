@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Cloud extends Actor
 {
     int aSpeed;                     //holds random speed of cloud objects
+    int tempBackgroundWidth = 10000;
     /**
      * This method is responsible for the setting up and the initialization of objects and variables.
      * This constructor has a parameter, meaning that spawning this actor in world classes will need to set that parameter in brackets.
@@ -29,28 +30,23 @@ public class Cloud extends Actor
             setImage("Cloud3.png");
             break;
         }
-        
+
         //update aSpeed
         aSpeed = speed;
         move(aSpeed);
     }
 
     /**
-     * Built-in method.
+     * Built-in method, no call needed.
+     * Solely for the purpose of preventing clouds from spawning on top of each other.
      */
     protected void addedToWorld(World w)
     {
-        setLocation(w.getWidth() + (this.getImage().getWidth() / 2), Greenfoot.getRandomNumber(100));     //random location for clouds 
-    }
-
-    /**
-     * Removes clouds when no longer needed, to save space.
-     */
-    void removeClouds() {
-        if (this.getWorld() != null) {
-            if (this.getX() + (this.getImage().getWidth() / 2) < 0) {           //tests if cloud objects pass left edge of screen
-                getWorld().removeObject(this);
-            }
+        while (getX() == 0 || isTouching(Cloud.class))          //check if any overlap occurs
+        {
+            int rndX = Greenfoot.getRandomNumber(tempBackgroundWidth);
+            int rndY = Greenfoot.getRandomNumber(250);
+            setLocation(rndX, rndY);
         }
     }
 
@@ -61,6 +57,5 @@ public class Cloud extends Actor
     public void act() 
     {
         move(this.aSpeed);              //move clouds at this random speed
-        removeClouds();                 //call custom method
     }    
 }

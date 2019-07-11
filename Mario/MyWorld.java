@@ -9,40 +9,50 @@ import java.util.*;
  */
 public class MyWorld extends World
 {
-    public Background Image1, Image2;                             //images merged together to create illusion of scrolling background
-    GreenfootSound backgroundMusic = new GreenfootSound("3 - Map 2 (Overworld).mp3");           //variable that stores theme music
+    GreenfootSound backgroundMusic = new GreenfootSound("world1.mp3");           //variable that stores theme music
     private int delay;                  //timer responsible for spawning clouds
-    boolean allowed;                    //checks if screen is able to scroll (if object is in the way of Mario);
+
+    public static final int WIDE = 1200;
+    public static final int HIGH = 800;
+
+    Scroller scroller;
+    Actor scrollActor;
+
     /**
      * This method is responsible for the setting up and the initialization of objects and variables
      */
     public MyWorld()
     {    
-        super(1200, 800, 1, false);                 //create unbounded world (can spawn objects outside edges)
+        super(WIDE, HIGH, 1, false);                 //create unbounded world (can spawn objects outside edges)
 
-        allowed = true;                                                     //at the start of the game, scrolling is enabled
-
-        Image1 = new Background();
-        addObject(Image1, getWidth()/2, getHeight()/2);
-        Image2 = new Background();
-        addObject(Image2, getWidth() + getWidth()/2, getHeight()/2);
-
-        Mario player1 = new Mario();
-        addObject(player1, getWidth()/2, 690);
+        GreenfootImage bg = new GreenfootImage("bg1.png");              //image is 10,000 pixels wide, memory error occurs too often
+        int bgWide = bg.getWidth();
+        int bgHigh = bg.getHeight();
+        scroller = new Scroller(this, bg, bgWide, bgHigh);
+        scrollActor = new Mario();
+        addObject(scrollActor, 50, 600);
+        scroll();
 
         Pipe pipe = new Pipe();
-        addObject(pipe, 900, 679);
+        addObject(pipe, 1000, 635);
+
+        spawn();
     }
 
     /**
      * Custom method created to spawn cloud objects in MyWorld
      */
     public void spawn() {
-        delay = (delay + 1)%180;            //spawns clouds every 3 seconds
-        
-        //each cloud has a random speed(range)
-        //position is set of (0,0) because position will be manually adjusted using the addedToWorld(World w) method in the cloud class
-        if (delay == 0) addObject(new Cloud(Greenfoot.getRandomNumber(4)-3), 0, 0);
+        for (int i = 0; i < 30; i++) {
+            Cloud cloud = new Cloud(0);
+            addObject(cloud, 0, 0);
+        }
+    }
+
+    private void scroll() {
+        int dsx = scrollActor.getX()-WIDE/2;
+        int dsy = scrollActor.getY()-HIGH/2;
+        scroller.scroll(dsx, dsy);
     }
 
     /**
@@ -50,18 +60,7 @@ public class MyWorld extends World
      * Custom methods and code that need to be constantly checked should be placed here.
      */
     public void act() {
+        if (scrollActor != null) scroll();
         backgroundMusic.playLoop();                     //play music repeatedly         
-        spawn();                                        //call custom method
-
-        //if Mario is not touching an object (in the x), then to enable screen scrolling
-        if (allowed) {                                  
-            if (Greenfoot.isKeyDown("right")) {
-                Image1.ActivateForwardScroll();
-                Image2.ActivateForwardScroll();
-            } else if (Greenfoot.isKeyDown("left")) {
-                Image1.ActivateBackwardScroll();
-                Image2.ActivateBackwardScroll();
-            }
-        }
     }
 }
