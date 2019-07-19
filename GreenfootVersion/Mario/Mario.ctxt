@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Mario
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Mario\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\r\n\ Greenfoot\ cycles\ through\ the\ act\ method\ at\ a\ speed\ of\ approximately\ 60\ frames\ per\ second.\r\n\ Custom\ methods\ and\ code\ that\ need\ to\ be\ constantly\ checked\ should\ be\ placed\ here.\r\n
+comment2.params=
+comment2.target=void\ moveHorizontally()
+comment3.params=
+comment3.target=void\ moveVertically()
+comment3.text=\r\n\ Responsible\ for\ the\ vertical\ movement\ of\ Mario,\r\n\ Involving\ jumping,\ falling,\ and\ platform\ detection\r\n
+numComments=4
