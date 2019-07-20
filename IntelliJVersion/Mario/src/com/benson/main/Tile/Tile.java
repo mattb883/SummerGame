@@ -5,7 +5,7 @@ import com.benson.main.ID;
 
 import java.awt.*;
 
-public class Tile {
+public abstract class Tile {
     public int x, y;
     public int width, height;
 
@@ -27,14 +27,8 @@ public class Tile {
         this.handler = handler;
     }
 
-    public void render(Graphics g) {
-
-    }
-
-    public void update() {
-        x+=velocityX;
-        y+=velocityY;
-    }
+    public abstract void render(Graphics g);
+    public abstract void update();
 
     public void die() {
         handler.removeTile(this);

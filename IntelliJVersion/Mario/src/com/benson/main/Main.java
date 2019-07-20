@@ -1,5 +1,8 @@
 package com.benson.main;
 
+import com.benson.main.Entities.Player;
+import com.benson.main.Input.KeyInput;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -28,6 +31,20 @@ public class Main extends Canvas implements Runnable {
     private Thread thread;                                      //creates an independent path execution for the computer to follow
     private boolean isRunning = false;                          //checks current state if program is running
 
+    public static Handler handler;
+
+    public Main() {
+
+    }
+
+    public void initialize() {
+        handler = new Handler();
+
+        addKeyListener(new KeyInput());
+
+        handler.addEntity(new Player(300, 512, 64, 64, true, ID.player, handler));
+    }
+
     private synchronized void start() {
         if(isRunning) return;
         isRunning = true;
@@ -46,6 +63,8 @@ public class Main extends Canvas implements Runnable {
     }
 
     public void run() {                                         //required method
+        initialize();
+        requestFocus();
         long lastTime = System.nanoTime();
         long timer = System.currentTimeMillis();
         double delta = 0.0;
@@ -82,16 +101,13 @@ public class Main extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics();
         g.setColor(new Color(66, 200, 245));
         g.fillRect(0, 0, getWidth(), getHeight());
+        handler.render(g);
         g.dispose();
         bs.show();
     }
 
     public void update() {
-
-    }
-
-    public Main() {
-        //
+        handler.update();
     }
 
     /**
