@@ -17,7 +17,6 @@ public class MyWorld extends World
 
     Scroller scroller;
     Actor scrollActor;
-
     /**
      * This method is responsible for the setting up and the initialization of objects and variables
      */
@@ -36,13 +35,24 @@ public class MyWorld extends World
         Pipe pipe = new Pipe();
         addObject(pipe, 1000, 635);
 
-        spawn();
+        addObject(new Brick(), 300, 530);
+        addObject(new Brick(), 350, 530);
+        addObject(new Brick(), 400, 530);
+        addObject(new Brick(), 450, 530);
+        addObject(new Brick(), 500, 530);
+        addObject(new Brick(), 350, 350);
+        addObject(new Brick(), 450, 350);
+        
+        addObject(new QuestionBlock(), 400, 350);
+        addObject(new QuestionBlock(), 750, 530);
+
+        spawnClouds();
     }
 
     /**
      * Custom method created to spawn cloud objects in MyWorld
      */
-    public void spawn() {
+    public void spawnClouds() {
         for (int i = 0; i < 30; i++) {
             Cloud cloud = new Cloud(0);
             addObject(cloud, 0, 0);
